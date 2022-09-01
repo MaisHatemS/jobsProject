@@ -1,0 +1,33 @@
+<app-confirmation-dialog *ngIf="modalService.showConfirmDialog"></app-confirmation-dialog>
+<app-addnewjob *ngIf="modalService.addNewJob"></app-addnewjob>
+<app-job-details [details]="jobDetails" *ngIf="modalService.showJobDetails"></app-job-details>
+
+<div class="row">
+    <div class="col-2 filter-container">
+     <app-checkbox [title]="'Sector'" [options]="sectors" (onChange)="onFilterChange($event)"></app-checkbox>
+     <app-checkbox [title]="'Country'" [options]="countries" (onChange)="onFilterChange($event)"></app-checkbox>
+     <app-checkbox [title]="'City'" [options]="cities" (onChange)="onFilterChange($event)"></app-checkbox>
+  </div>
+    
+    <div class="col-9 job-container">
+      <div class="search-container">
+        <div class="col-12 ">
+          <input type="text" placeholder="Search"   #searchinput />
+        </div>
+        <div class="col-3">
+          <input type="submit" (click)="AddNewJob()" value="Add New Job">
+        </div>
+      
+      </div>
+    
+
+       <app-job-card [onFilterChange]="object" (onClick)="showJobDetails($event)"></app-job-card>
+  
+        
+       
+      
+  
+  
+    </div> 
+ 
+  

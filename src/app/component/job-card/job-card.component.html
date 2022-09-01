@@ -1,0 +1,36 @@
+<div *ngFor="let job of jobList  | paginate: {itemsPerPage: size,currentPage: page,totalItems: count};let i = index">
+<article class="job-card">
+    <div class="company-logo-img">
+      <img src="https://images.unsplash.com/photo-1606830733744-0ad778449672?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mzl8fGNocmlzdG1hcyUyMHRyZWV8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+
+    </div>
+    <div class="job-title">{{job.title}}</div>
+    <div class="company-name">{{job.city.name}},{{job.country.name}}</div>
+    <div class="description-container">
+      <div class="description">{{job.description}}</div>
+    </div>
+    <div class="icon-Container">
+      <button class="icon-button " (click)="showJobDetails($event,job)"><i class="fa fa-eye details"></i></button>
+      <button class="icon-button danger" (click)="onDelete($event,job._id)"><i class="fa fa-trash"></i></button>    
+    </div>
+  </article>
+</div>
+<article class="Empty-Card" *ngIf="!jobList || jobList.length==0">
+  <span>There No Data</span>
+</article>
+
+<div class="pagination-container">
+  <pagination-controls
+    previousLabel="Prev"
+    nextLabel="Next"
+    (pageChange)="onDataChange($event)"
+  >
+  
+  </pagination-controls>
+  <select (change)="onSizeChange($event)">
+    <option *ngFor="let size of listSizes">
+      {{size}}
+    </option>
+    
+      </select>
+</div>

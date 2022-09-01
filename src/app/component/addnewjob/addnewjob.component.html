@@ -1,0 +1,64 @@
+
+<div class="container">
+    <div class="title">
+        {{title}}
+    </div>
+<div class="form-container">
+    <form autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <input class="form-control" type="text" id="fname"  placeholder="Job Title"
+                    ngModel name="jobTitle" #jobTitle="ngModel" required [(ngModel)]="jobform.title">
+                  </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <select id="country" class="form-control" name="sector"   ngModel #sector="ngModel" [(ngModel)]="jobform.sector" required>
+                        <option value="" disabled selected hidden>Sector</option>
+                        <option *ngFor="let sector of sectors" [ngValue]="sector">{{sector.name}}</option>
+
+                      </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <select id="country"  class="form-control"  name="country" ngModel  #country="ngModel" [(ngModel)]="jobform.country" required>
+                        <option value="" disabled selected hidden>Country</option>
+                        <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
+
+                    </select>
+                  </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <select id="country" class="form-control"  name="city"  ngModel  #city="ngModel" [(ngModel)]="jobform.city" required>
+                        <option value="" disabled selected hidden>City</option>
+                        <option *ngFor="let city of cities" [ngValue]="city">{{city.name}}</option>
+
+                    </select>
+                    </div>
+            </div>
+
+        </div>
+        <div class="row">
+         
+      
+      <div class="col-12 form-group">
+        <textarea class="form-control"  id="subject" name="description"  ngModel  #description="ngModel" [(ngModel)]="jobform.description" required placeholder="Description" style="height:200px"></textarea>
+        </div>
+
+        </div>
+       
+    
+    <div class="col-3 sumbit-container">
+      <input id="cancel"  (click)="cancel()" value="Cancel" />
+      <input id="add" type="submit" value="Add New Job"/>
+      
+      </div>
+    </form>
+</div>
+  </div>

@@ -1,0 +1,366 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  border: 1px solid red;
+  padding: 15px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+  border: 1px solid;
+//  margin:1px;
+}
+
+@media only screen and (max-width: 768px) { 
+  /* For mobile phones: */ 
+  [class*="col-"] { 
+  width: 100%; 
+  } 
+} 
+* {
+  box-sizing: border-box;
+}
+@media (min-width: 668px) 
+{  
+ 	//html, body { margin: 72px; background-color: #000; } 
+	//h1 { font-size: 60px; color: #FFF; } 
+//	p { font-size: 30px; color: #F00; } 
+} 
+@media (max-width: 667px) 
+{ 
+	//html, body { margin: 36px; background-color: #F00; } 
+	//h1 { font-size: 36px; color: #000; } 
+	//p { font-size: 24px; color: #FFF; } 
+} 
+@media (max-width: 375px) 
+{ 
+	//html, body { margin: 12px; background-color: #FFF; } 
+	//h1 { font-size: 24px; color: #F00; } 
+	//p { font-size: 16px; color: #000; } 
+} 
+@media screen and (min-width: 480px) {
+  #leftsidebar {width: 200px; float: left;}
+  #main {margin-left: 216px;}
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+input[type=text] {
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  // background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  width: 100%;
+  padding:16px 25px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+  // float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+.pagination {
+  display: inline-block;
+  
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  margin: auto;
+  // text-align: center;
+  font-family: arial;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  // text-align: center;
+  cursor: pointer;
+  // width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+.card img{
+  float: left;
+}
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 2vm;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+ 
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  
+}
+
+// job card
+article.job-card {
+  display: grid;
+  grid-template-columns: 80px auto 100px;
+  grid-template-rows: 35px 10px 35px;
+  width: 100%;
+  position: relative;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+  font-family: 'Helvetica';
+  padding: 24px;
+  margin-bottom: 2%;
+}
+
+article.job-card:hover,
+article.job-card:focus {
+  background-color: rgba(0,166,194,.03);
+    border-color: #b2e4ec;
+}
+
+.company-logo-img {
+  grid-area: 1 / 1 / 2 / 2;
+  background-color: #fff;
+  border: 1px solid #e3e3e3;
+  height: 80px;
+  width: 80px;
+  box-sizing: border-box;
+  position: relative;
+  padding: 5px;
+}
+
+.company-logo-img img {
+  max-height: calc(100% - 10px);
+  max-width: calc(100% - 10px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.job-title {
+  grid-area: 1 / 2 / 2 / 3;
+  font-size: 16px;
+  align-self: start;
+  font-weight: 500;
+  margin-top: 5px;
+  padding: 0 24px;
+}
+
+.company-name {
+  grid-area: 2 / 2 / 3 / 3;
+  align-self: center;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 5px;
+  padding: 0 24px;
+}
+
+.skills-container {
+  grid-area: 3 / 2 / 4 / 3;
+  align-self: center;
+  padding-top: 10px;
+  padding: 0 24px;
+}
+
+.skill {
+  display: inline;
+  color: #00a6c2;
+  border-radius: 2px;
+  background-color: rgba(0,166,194,.05);
+  border: 1px solid rgba(0,166,194,.15);
+  padding: 5px 8px;
+  font-size: 12px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 6px 12px;
+  z-index: 2;
+}
+.apply {
+  grid-area: 1 / 3 / 2 / 4;
+  background-color: #1ab059;
+  color: #fff;
+}
+.save {
+  grid-area: 3 / 3 / 4 / 4;
+  background-color: #fff;
+  border: 1px solid #a4a5a8;
+  color: #777;
+}
+
+// a {
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   left: 0;
+//   top: 0;
+//   z-index: 1;
+// }
+
+.mobile-wrapper {
+  margin-top: 50px;
+  max-width: 400px;
+
+}
+
+.mobile-wrapper article {
+  grid-template-columns: 60px auto;
+  grid-template-rows: 35px 25px auto 40px;
+  width: calc(100% - 32px);
+  padding: 16px;
+}
+
+.mobile-wrapper .company-logo-img {
+  grid-area: 1 / 1 / 3 / 2;
+  height: 60px;
+  width: 60px;
+}
+
+.mobile-wrapper .job-title {
+  grid-area: 1 / 2 / 2 / 2;
+  padding: 8px 16px 0 16px;
+}
+
+.mobile-wrapper .company-name {
+  grid-area: 2 / 2 / 3 / 2;
+  padding: 0 16px;
+}
+
+.mobile-wrapper .skills-container {
+  grid-area: 3 / 1 / 4 / 3;
+  padding: 16px 0;
+}
+
+.mobile-wrapper .btn-container {
+  grid-area: 4 / 1 / 5 / 3;
+  display: flex;
+}
+
+.mobile-wrapper .btn-container button {
+  height: 38px;
+  flex: 1;
+  width: 0;
+}
+
+.mobile-wrapper .btn-container .apply {
+    margin-right: 10px;
+}
