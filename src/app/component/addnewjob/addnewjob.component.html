@@ -48,13 +48,13 @@
          
       
       <div class="col-12 form-group">
-        <textarea class="form-control"  id="subject" name="description"  ngModel  #description="ngModel" [(ngModel)]="jobform.description" required placeholder="Description" style="height:200px"></textarea>
+        <textarea class="form-control"  id="subject" name="description"  ngModel rows="5" #description="ngModel" [(ngModel)]="jobform.description" required placeholder="Description"></textarea>
         </div>
 
         </div>
        
     
-    <div class="col-3 sumbit-container">
+    <div class="sumbit-container">
       <input id="cancel"  (click)="cancel()" value="Cancel" />
       <input id="add" type="submit" value="Add New Job"/>
       

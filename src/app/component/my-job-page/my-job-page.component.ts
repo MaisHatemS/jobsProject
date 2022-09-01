@@ -1,5 +1,5 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { filter, fromEvent,debounceTime ,distinctUntilChanged,tap} from 'rxjs';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { filter, fromEvent,debounceTime ,distinctUntilChanged,tap, Subscription} from 'rxjs';
 import { City } from 'src/app/models/city';
 import { Country } from 'src/app/models/country';
 import { Job } from 'src/app/models/job';
@@ -13,7 +13,7 @@ import { ModalService } from 'src/app/service/modal.service';
   templateUrl: './my-job-page.component.html',
   styleUrls: ['./my-job-page.component.scss']
 })
-export class MyJobPageComponent implements OnInit {
+export class MyJobPageComponent implements OnInit ,OnDestroy{
 
   job:Job[] =[];
   countries:Country[]=[];
@@ -25,6 +25,7 @@ export class MyJobPageComponent implements OnInit {
     sector: new Sector
   };
   object:any;
+  jobsSub$: Subscription;
   @ViewChild('searchinput') input: ElementRef;
   constructor(private JobserviceService:JobserviceService
     ,public modalService: ModalService
@@ -38,15 +39,21 @@ export class MyJobPageComponent implements OnInit {
   ngOnInit(): void {
     this.getAllLookup();
   }
+ngOnDestroy(): void {
+  this.jobsSub$?.unsubscribe();
+}
+
   ngAfterViewInit() {
     // server-side search
   fromEvent(this.input.nativeElement,'keyup')
     .pipe(
         filter(Boolean),
-        debounceTime(150),
+        debounceTime(300),
         distinctUntilChanged(),
         tap((text) => {
-          console.log(this.input.nativeElement.value)
+          const query = this.input.nativeElement.value;
+          console.log("query", query)
+           this.jobsSub$ = this.JobserviceService.getAllJobs(1,10,query).subscribe();
         })
     )
     .subscribe();
@@ -72,7 +79,6 @@ export class MyJobPageComponent implements OnInit {
     console.log("Iam in");
 
     this.modalService.addNewJob=true;
-   //const modalRef = this.modalService.open(AddnewjobComponent, { title: 'My dynamic title', message: 'My dynamic message' });
   }
   onFilterChange(options:any){
     this.object=options;

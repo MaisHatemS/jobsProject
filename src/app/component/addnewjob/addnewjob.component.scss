@@ -33,7 +33,6 @@ input[type=submit] {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
 }
 
@@ -47,6 +46,7 @@ button[type=submit]:hover {
     width: 50%;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     display: flex;
+    flex-direction: column;
 
 }
   
@@ -55,18 +55,27 @@ button[type=submit]:hover {
     padding: 15px;
   }
   
-  .row::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-  
-  [class*="col-"] {
-    float: left;
+
+  .form-container {
     padding: 15px;
-    
-  //  margin:1px;
   }
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+  // .row::after {
+  //   // content: "";
+  //   // clear: both;
+  //   // display: table;
+  // }
+  
+  // [class*="col-"] {
+  //   // float: left;
+  //   // padding: 15px;
+    
+  // //  margin:1px;
+  // }
   
   @media only screen and (max-width: 768px) { 
     /* For mobile phones: */ 
@@ -126,16 +135,15 @@ button[type=submit]:hover {
     background-color: #e7e7e7; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
    
   }
 .sumbit-container{
-  float:right;
-  width: fit-content;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
 }

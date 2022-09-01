@@ -7,7 +7,7 @@
     <div class="job-title">{{job.title}}</div>
     <div class="company-name">{{job.city.name}},{{job.country.name}}</div>
     <div class="description-container">
-      <div class="description">{{job.description}}</div>
+      {{job.description}}
     </div>
     <div class="icon-Container">
       <button class="icon-button " (click)="showJobDetails($event,job)"><i class="fa fa-eye details"></i></button>
@@ -23,6 +23,7 @@
   <pagination-controls
     previousLabel="Prev"
     nextLabel="Next"
+    
     (pageChange)="onDataChange($event)"
   >
   

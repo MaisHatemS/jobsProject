@@ -1,19 +1,112 @@
 const Job = require('../models/job');
 
 
+
+// const searchFilter=(req,res,next)=>{
+//     res.setHeader('Content-Type', 'application/json');
+//     if(req.query.query){//title Search Filter
+//         console.log(query);
+//         Job.find({
+//             "$or":[
+//                 {title:{$regex:req.query.query}}
+//             ]
+//         }).then(response=>{
+//             res.status(200).json({
+//                 response
+//             })
+//            }).catch(error=>{
+//             res.status(400).json({
+//                 message:"An error Occured :"+error
+//             })
+          
+//            })
+//         }
+//         else{
+//             Job.find()
+//        .then(response=>{
+//         res.status(200).json({
+//             response
+//         })
+//        }).catch(error=>{
+//         res.status(400).json({
+//             message:"An error Occured :"+error
+//         })
+      
+//        })
+//         }
+//     }
 const index =(req,res,next)=>{
+   // console.log()
     if(req.query._page && req.query._limit){
-        Job.paginate({},{page:req.query._page,limit:req.query._limit})
-        .then(response=>{
-         res.status(200).json({
-             response
-         })
-        }).catch(error=>{
-         res.status(400).json({
-             message:"An error Occured :"+error
-         })
-       
-        })
+        // let skip = (page - 1) * pageSize;
+        if(req.query.query){
+            if(req.query.sector|| req.query.country|| req.query.city){
+                let filter={};
+                filter={city:req.query.city.split(','),country:req.query.country.split(','),sector:req.query.sector.split(','),
+                    "$or":[
+       {title:{$regex:req.query.query}}
+                   ]
+                }
+               Job.paginate(filter,{page:req.query._page,limit:req.query._limit})
+               .then(response=>{
+                res.json({
+                    response
+                })
+               }).catch(error=>{
+                res.json({
+                    message:"An error Occured :"+error
+                })
+              
+               })
+            }
+            else{
+                let filter={};
+                filter={
+                    "$or":[{title:{$regex:req.query.query}}]
+                }
+                Job.paginate(filter,{page:req.query._page,limit:req.query._limit})
+                .then(response=>{
+                 res.json({
+                     response
+                 })
+                }).catch(error=>{
+                 res.json({
+                     message:"An error Occured :"+error
+                 })
+               
+                })
+            }
+
+        }
+       else if(req.query.sector|| req.query.country|| req.query.city){
+            let filter={};
+            filter={city:req.query.city.split(','),country:req.query.country.split(','),sector:req.query.sector.split(',')}
+           Job.paginate(filter,{page:req.query._page,limit:req.query._limit})
+           .then(response=>{
+            res.json({
+                response
+            })
+           }).catch(error=>{
+            res.json({
+                message:"An error Occured :"+error
+            })
+          
+           })
+        }
+        else{
+            Job.paginate({},{page:req.query._page,limit:req.query._limit})
+            .then(response=>{
+             res.json({
+                 response
+             })
+            }).catch(error=>{
+             res.json({
+                 message:"An error Occured :"+error
+             })
+           
+            })
+        }
+        
     }
     else{
         Job.find()

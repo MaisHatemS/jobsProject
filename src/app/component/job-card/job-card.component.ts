@@ -17,22 +17,30 @@ export class JobCardComponent implements OnInit {
   listSizes: any = [10, 25, 50, 100];
   jobList:Job[]=[];
   @Output() onClick=new EventEmitter();
-@Input() onFilterChange:any;
+@Input() CheckBoxChanges:any;
+@Input() query: string;
   constructor(private JobserviceService:JobserviceService,private router :Router
     ,private modalService:ModalService) { }
 
   ngOnInit(): void {
     this.getAll(this.page,this.size);
+    this.JobserviceService.jobsChanged.subscribe(jobs => {
+      
+      this.jobList=jobs;
+    })
     // console.log(this.onFilterChange);
   }
   getAll(page:any,size:any){// get All Jobs
 
 
-    this.JobserviceService.getAllJobs(this.page,this.size).subscribe(e=>{
-      this.jobList=e.response.docs;
-      this.count=e.response.totalDocs;
+    this.JobserviceService.getAllJobs(this.page,this.size).subscribe(e=>
+      {
+        this.jobList=e.response.docs;
+        this.count=e.response.totalDocs;
+      }
+      
 
-    });
+      );
   }
 
   onDelete(event:any,jobId:any){

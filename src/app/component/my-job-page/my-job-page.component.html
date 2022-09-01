@@ -3,11 +3,13 @@
 <app-job-details [details]="jobDetails" *ngIf="modalService.showJobDetails"></app-job-details>
 
 <div class="row">
-    <div class="col-2 filter-container">
-     <app-checkbox [title]="'Sector'" [options]="sectors" (onChange)="onFilterChange($event)"></app-checkbox>
-     <app-checkbox [title]="'Country'" [options]="countries" (onChange)="onFilterChange($event)"></app-checkbox>
-     <app-checkbox [title]="'City'" [options]="cities" (onChange)="onFilterChange($event)"></app-checkbox>
+  <div class="col-2 filter-container">
+    <app-checkbox [title]="'Sector'" [options]="sectors" (onChange)="onFilterChange($event)"></app-checkbox>
+    <app-checkbox [title]="'Country'" [options]="countries" (onChange)="onFilterChange($event)"></app-checkbox>
+    <app-checkbox [title]="'City'" [options]="cities" (onChange)="onFilterChange($event)"></app-checkbox>
   </div>
+  
+ 
     
     <div class="col-9 job-container">
       <div class="search-container">
@@ -21,13 +23,11 @@
       </div>
     
 
-       <app-job-card [onFilterChange]="object" (onClick)="showJobDetails($event)"></app-job-card>
+       <app-job-card [CheckBoxChanges]="object" (onClick)="showJobDetails($event)"></app-job-card>
   
         
        
-      
+
   
-  
-    </div> 
- 
+</div> 
   
