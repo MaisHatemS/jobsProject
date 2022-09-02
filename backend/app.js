@@ -33,6 +33,7 @@ app.use('/', indexRouter);
 app.use('/posts', postsRouter);
 app.use('/api/job',jobRouter);
 app.use('/api/job',lookupRouter);
+// app.use('/uploads',express.static('uploads'));
 app.use((err, req, res, next) => {
     res.status(err.status || 500).json({
       message: err.message || "Something went wrong. Please try again",

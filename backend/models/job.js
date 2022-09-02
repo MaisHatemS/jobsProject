@@ -8,7 +8,8 @@ const schema =mongoose.Schema;
 
 const jobSchema= new schema({
     title:{
-    type: String
+    type: String,
+    required:true
 },
 city:{
     _id:{
@@ -16,7 +17,8 @@ city:{
     },
     name:{
        type:String
-    }
+    },
+
    },
    country:{
     _id:{
@@ -24,7 +26,8 @@ city:{
     },
        name:{
            type:String
-        }
+        },
+    
    },
    sector:{
     _id:{
@@ -32,13 +35,16 @@ city:{
     },
        name:{
            type:String
-        }
+        },
    },
 description:
 {
+    type:String,
+    required:true
+},
+jobImg:{
     type:String
 }
-
 
 },{timestamps:true});
 

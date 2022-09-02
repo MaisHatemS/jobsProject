@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, 
 import { filter, fromEvent,debounceTime ,distinctUntilChanged,tap, Subscription} from 'rxjs';
 import { City } from 'src/app/models/city';
 import { Country } from 'src/app/models/country';
+import { JobFile } from 'src/app/models/file';
 import { Job } from 'src/app/models/job';
 import { Sector } from 'src/app/models/sector';
 import { JobserviceService } from 'src/app/service/jobservice.service';
@@ -22,7 +23,8 @@ export class MyJobPageComponent implements OnInit ,OnDestroy{
   jobDetails:Job={
     _id: 0, country: new Country ,city: new City, description: " ",
     title: ' ',
-    sector: new Sector
+    sector: new Sector,
+    jobImg:''
   };
   object:string[]=[];
   jobsSub$: Subscription;

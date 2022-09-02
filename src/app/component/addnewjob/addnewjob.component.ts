@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { City } from 'src/app/models/city';
 import { Country } from 'src/app/models/country';
+import { JobFile } from 'src/app/models/file';
 import { Job } from 'src/app/models/job';
 import { Sector } from 'src/app/models/sector';
 import { JobserviceService } from 'src/app/service/jobservice.service';
@@ -15,13 +16,13 @@ import { ModalService } from 'src/app/service/modal.service';
   styleUrls: ['./addnewjob.component.scss']
 })
 export class AddnewjobComponent implements OnInit {
-form:FormGroup;
+
+  selectedFile:File;
   title:string ="Add New Job Post"
    public jobform:Job;
    countries:Country[]=[];
    sectors:Sector[]=[];
    cities:City[]=[];
-   imageData:string;
   constructor(
     private jobServer:JobserviceService,
       public modalService: ModalService,
@@ -35,15 +36,7 @@ form:FormGroup;
   }
 
   ngOnInit() :void{
-
-    this.form=new FormGroup({
-      title:new FormControl(null),
-      city:new FormControl(null),
-      country:new FormControl(null),
-      sector:new FormControl(null),
-      description:new FormControl(null),
-      jobImg:new FormControl(null),
-    });
+   
     this.getAllLookup();
   }
   getAllLookup(){
@@ -63,24 +56,18 @@ form:FormGroup;
     this.modalService.addNewJob=false;
   }
   onSubmit(form:NgForm){
+//     console.log(this.selectedFile.name);
+//     const formdata=new FormData();    
+//       formdata.append("jobimg", this.selectedFile, this.selectedFile.name);
+// this.jobform.jobImg=formdata;
     this.jobServer.addNewJob(this.jobform).subscribe(e=>{
       window.location.reload();
 
     });
   }
-  onFileSelected(event:Event){
-
-    // const file = (event.target as HTMLInputElement).files[0];
-    // this.form.patchValue({jobImg:file});
-    // const allowedMimiType =['image/png','image/jpeg','image/jpg'];
-    // if(file && allowedMimiType.includes(file.type)){
-    //   const reader= new FileReader();
-    //   reader.onload =() =>{
-    //     this.imageData=reader.result as string;
-    //   }
-    //   reader.readAsDataURL
-
-    // }
-
+  onFileSelected(event:any){
+    console.log(event);
+    this.selectedFile= event.target.files[0];
+    
   }
 }

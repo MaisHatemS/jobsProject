@@ -56,9 +56,7 @@ public getAllJobWithFilters(page?:any,limit?:any,options?:any):Observable<any>{
 
   });
 
-  console.log(city);
-  console.log(country);
-  console.log(sector);
+
   let params = new HttpParams();
   params = params.append('page',page);
   params = params.append('limit', limit);
@@ -98,7 +96,9 @@ public getAllJobWithFilters(page?:any,limit?:any,options?:any):Observable<any>{
 
   }
 
-  
+  // upload(image:any):Observable<any>{
+  //   return this.http.post(this.Port + '/api/job/uploads', image);
+  // }
  
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';

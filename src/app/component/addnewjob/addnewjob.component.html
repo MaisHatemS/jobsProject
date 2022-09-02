@@ -4,7 +4,7 @@
         {{title}}
     </div>
 <div class="form-container">
-    <form autocomplete="off"  [form]="form" (submit)="onSubmit(form)">
+    <form autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
@@ -52,10 +52,10 @@
         </div>
 
         </div>
-        <div class="col-6 form-group">
+        <!-- <div class="col-6 form-group">
             <input type="file" (change)="onFileSelected($event)"/>
 
-        </div>
+        </div> -->
        
     
     <div class="sumbit-container">

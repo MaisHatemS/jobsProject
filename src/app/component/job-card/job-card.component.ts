@@ -32,6 +32,7 @@ export class JobCardComponent implements OnInit {
     this.JobserviceService.jobsChanged.subscribe(jobs => {
       
       this.jobList=jobs;
+
     })
   }
   getAll(page:any,size:any){// get All Jobs

@@ -1,5 +1,6 @@
 import { City } from "./city";
 import { Country } from "./country";
+import { JobFile } from "./file";
 import { Sector } from "./sector";
 
 
@@ -10,5 +11,5 @@ export class Job{
     country:Country;
     sector:Sector;
     description:string;
-    jobImg?:string  ;
+    jobImg?:any ;
 }

@@ -34,6 +34,8 @@ import { ConfirmationDialogComponent } from './component/confirmation-dialog/con
     FormsModule,
     NgxPaginationModule,
     ReactiveFormsModule
+    
+    
   ],
   providers: [JobserviceService,ModalService],
   bootstrap: [AppComponent]
