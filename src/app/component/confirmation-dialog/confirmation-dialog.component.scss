@@ -14,7 +14,7 @@
 #container{
     width: 40%;
     box-shadow: 5px 5px 4px rgba(19,19,19,0.2);
-    border-radius: 10px;
+    border-radius: 4px;
     background-color:#fff;
    display: flex;
    flex-direction: column;
@@ -49,16 +49,16 @@
             border: 0px;
             cursor: pointer;
             border-radius: 2px;
-            background-color: red;
+            background-color: #e51212;
             color: white;
-
+            font-family: monospace;
             &.cancel{
-                background-color: #0074ff96;
+                background-color: rgb(11 80 197 / 76%);
                 color: #fff8f8;
-                border-color:#0074ff96;
+                border-color: rgba(0, 116, 255, 0.5882352941);
                
             }
         }
     }
 
-}
+}  

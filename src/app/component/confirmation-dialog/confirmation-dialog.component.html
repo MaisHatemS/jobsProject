@@ -1,14 +1,14 @@
 <div id="container">
-    <div id="header">
-Please Confirm !
-    </div>
+    <!-- <div id="header">
+
+    </div> -->
     <div id="content">
         Are you sure you want to delete this job ?
 
     </div>
     <div id="Action">
-        <button class="cancel" (click)="modalservice.showJobDetails=false">No</button>
-        <button >Yes</button>
+        <button class="cancel" (click)="modalservice.dialog.show=false">No</button>
+        <button (click)="approved($event)">Yes</button>
       
     </div>
 

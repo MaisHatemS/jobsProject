@@ -11,12 +11,16 @@ import { ModalService } from 'src/app/service/modal.service';
 })
 export class JobCardComponent implements OnInit {
 
+  cityId:number;
+  countryId:number;
+  sectorId:number;
   page: number = 1;
   count: number = 0;
   size: number = 10;
   listSizes: any = [10, 25, 50, 100];
   jobList:Job[]=[];
   @Output() onClick=new EventEmitter();
+  @Output() onJobDelete=new EventEmitter();
 @Input() CheckBoxChanges:any;
 @Input() query: string;
   constructor(private JobserviceService:JobserviceService,private router :Router
@@ -24,14 +28,13 @@ export class JobCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll(this.page,this.size);
+
     this.JobserviceService.jobsChanged.subscribe(jobs => {
       
       this.jobList=jobs;
     })
-    // console.log(this.onFilterChange);
   }
   getAll(page:any,size:any){// get All Jobs
-
 
     this.JobserviceService.getAllJobs(this.page,this.size).subscribe(e=>
       {
@@ -44,14 +47,10 @@ export class JobCardComponent implements OnInit {
   }
 
   onDelete(event:any,jobId:any){
-
-    this.modalService.showConfirmDialog=true;
-    if(confirm("Are you sure to delete "+jobId)) {
-      window.location.reload();
-      this.JobserviceService.deleteJob(jobId).subscribe(e=>{
-
-      })
-    }
+console.log("Iam in job card");
+    this.modalService.dialog.show=true;
+    this.onJobDelete.emit(jobId)
+    
     
     
   }

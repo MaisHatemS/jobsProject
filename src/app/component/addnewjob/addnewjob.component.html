@@ -4,7 +4,7 @@
         {{title}}
     </div>
 <div class="form-container">
-    <form autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+    <form autocomplete="off"  [form]="form" (submit)="onSubmit(form)">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
@@ -50,6 +50,10 @@
       <div class="col-12 form-group">
         <textarea class="form-control"  id="subject" name="description"  ngModel rows="5" #description="ngModel" [(ngModel)]="jobform.description" required placeholder="Description"></textarea>
         </div>
+
+        </div>
+        <div class="col-6 form-group">
+            <input type="file" (change)="onFileSelected($event)"/>
 
         </div>
        

@@ -1,15 +1,20 @@
 import {Injectable} from '@angular/core';
-
-
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ModalService {
 
+export class ModalService {
+  
+  
  addNewJob=false;
  showJobDetails =false;
- showConfirmDialog=false;
+  dialog:any={
+    show:false,
+    aproved:false
+  };
   constructor() { }
+
   
 }

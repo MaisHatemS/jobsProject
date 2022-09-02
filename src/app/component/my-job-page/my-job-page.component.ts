@@ -14,7 +14,7 @@ import { ModalService } from 'src/app/service/modal.service';
   styleUrls: ['./my-job-page.component.scss']
 })
 export class MyJobPageComponent implements OnInit ,OnDestroy{
-
+  jobId:any;
   job:Job[] =[];
   countries:Country[]=[];
   sectors:Sector[]=[];
@@ -24,7 +24,7 @@ export class MyJobPageComponent implements OnInit ,OnDestroy{
     title: ' ',
     sector: new Sector
   };
-  object:any;
+  object:string[]=[];
   jobsSub$: Subscription;
   @ViewChild('searchinput') input: ElementRef;
   constructor(private JobserviceService:JobserviceService
@@ -61,14 +61,18 @@ ngOnDestroy(): void {
   getAllLookup(){
     this.lookupService.getAllCities().subscribe(e=>{
       this.cities=e.response;
+      this.cities.map(e=>e.type="city");
+
 
     });
     this.lookupService.getAllCountries().subscribe(e=>{
       this.countries=e.response;
+      this.countries.map(e=>e.type="country");
   
     });
     this.lookupService.getAllSectors().subscribe(e=>{
       this.sectors=e.response;
+      this.sectors.map(e=>e.type="sector")
    });
   }
 
@@ -81,22 +85,26 @@ ngOnDestroy(): void {
     this.modalService.addNewJob=true;
   }
   onFilterChange(options:any){
-    this.object=options;
-    
+    options.map((e: any)=>{
+      if(e.isChecked && !this.object.includes(e))
+      this.object.push(e);
 
+    })
+ 
+   
 
+    this.jobsSub$ = this.JobserviceService.getAllJobWithFilters(1,10, this.object).subscribe();
   }
 
-  applyTitleFilter(event:any){
-
-    console.log(event.target.value);
-
-  }
 
   showJobDetails(details:any){
   this.jobDetails=details;
   this.modalService.showJobDetails=true;
 
+  }
+  confirmDelete(jobID:any){
+this.jobId=jobID;
+console.log("hi there");
   }
 
 

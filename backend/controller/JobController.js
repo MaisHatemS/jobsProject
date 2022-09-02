@@ -1,4 +1,5 @@
 const Job = require('../models/job');
+const sector = require('../models/sector');
 
 
 
@@ -36,18 +37,20 @@ const Job = require('../models/job');
 //         }
 //     }
 const index =(req,res,next)=>{
-   // console.log()
-    if(req.query._page && req.query._limit){
+   console.log(req.query);
+    if(req.query.page && req.query.limit){
         // let skip = (page - 1) * pageSize;
         if(req.query.query){
+
             if(req.query.sector|| req.query.country|| req.query.city){
+                console.log(req.query.country);
                 let filter={};
                 filter={city:req.query.city.split(','),country:req.query.country.split(','),sector:req.query.sector.split(','),
                     "$or":[
        {title:{$regex:req.query.query}}
                    ]
                 }
-               Job.paginate(filter,{page:req.query._page,limit:req.query._limit})
+               Job.paginate(filter,{page:req.query.page,limit:req.query.limit})
                .then(response=>{
                 res.json({
                     response
@@ -64,7 +67,7 @@ const index =(req,res,next)=>{
                 filter={
                     "$or":[{title:{$regex:req.query.query}}]
                 }
-                Job.paginate(filter,{page:req.query._page,limit:req.query._limit})
+                Job.paginate(filter,{page:req.query.page,limit:req.query.limit})
                 .then(response=>{
                  res.json({
                      response
@@ -80,8 +83,23 @@ const index =(req,res,next)=>{
         }
        else if(req.query.sector|| req.query.country|| req.query.city){
             let filter={};
-            filter={city:req.query.city.split(','),country:req.query.country.split(','),sector:req.query.sector.split(',')}
-           Job.paginate(filter,{page:req.query._page,limit:req.query._limit})
+            // filter={
+            //     "$or":[
+            //       {"sector":{$regex:req.query.sector.split(',')}},
+            //         {"country":{$regex:req.query.country.split(',')}},
+            //         {"city":{$regex:req.query.city.split(',')}}
+
+
+            //     ]
+            // }
+              if(req.query.sector)
+            filter.sector=req.query.sector.split(',');
+            if(req.query.country)
+            filter.country=req.query.country.split(',');
+            if(req.query.city)
+            filter.city=req.query.city.split(',');
+            console.log(filter);
+           Job.paginate(filter,{page:req.query.page,limit:req.query.limit})
            .then(response=>{
             res.json({
                 response
@@ -94,7 +112,7 @@ const index =(req,res,next)=>{
            })
         }
         else{
-            Job.paginate({},{page:req.query._page,limit:req.query._limit})
+            Job.paginate({},{page:req.query.page,limit:req.query.limit})
             .then(response=>{
              res.json({
                  response
@@ -165,7 +183,8 @@ const store =(req,res,next)=>{
 }
 
 const destroy=(req,res,next)=>{
-    let jobID=req.body.jobID
+    let jobID=req.body._id
+    console.log(jobID);
     Job.findByIdAndDelete(jobID)
     .then(response=>{
         res.json({

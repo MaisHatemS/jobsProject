@@ -10,5 +10,5 @@ export class Job{
     country:Country;
     sector:Sector;
     description:string;
-    jobImg?:string | ArrayBuffer ;
+    jobImg?:string  ;
 }

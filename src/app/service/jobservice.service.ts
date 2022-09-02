@@ -16,10 +16,9 @@ export class JobserviceService {
   constructor(private http:HttpClient) { }
 
   public getAllJobs(page?:any,limit?:any,query?:any,country?:any,city?:any,sector?:any):Observable<any>{
-    console.log(query);
     let params = new HttpParams();
-    params = params.append('_page',page);
-    params = params.append('_limit', limit);
+    params = params.append('page',page);
+    params = params.append('limit', limit);
     if(city)
     params = params.append('city',city);
     if(country)
@@ -30,7 +29,6 @@ export class JobserviceService {
     params = params.append('query',query);
    return this.http.get<any>(this.Port+'/api/job',{params:params}).pipe(
     tap(response => {
-      console.log("response", response);
       
       this.jobs = response.response.docs;
       this.jobsChanged.next([...this.jobs]);
@@ -39,7 +37,47 @@ export class JobserviceService {
    // return this.http.get<any>(endpoint);
   // return this.http.get<any>(this.Port+'/api/job',{params:params});
   }
+public getAllJobWithFilters(page?:any,limit?:any,options?:any):Observable<any>{
+  let city:string[]=[];
+  let country:string[]=[];
+  let sector:string[]=[];
 
+  options.map((e: any)=>{
+    if(e.type=="city" && e.isChecked){
+      city.push(e._id);
+    }
+    if(e.type=="country" && e.isChecked){
+      country.push(e._id);
+    }
+    if(e.type=="sector" && e.isChecked){
+      sector.push(e._id);
+
+    }
+
+  });
+
+  console.log(city);
+  console.log(country);
+  console.log(sector);
+  let params = new HttpParams();
+  params = params.append('page',page);
+  params = params.append('limit', limit);
+  if(city.length)
+  params = params.append('city',city.join(','));
+  if(country.length)
+  params = params.append('country',country.join(','));
+  if(sector.length)
+  params = params.append('sector',sector.join(','));
+  
+ return this.http.get<any>(this.Port+'/api/job',{params:params}).pipe(
+  tap(response => {
+    console.log("response", response);
+    
+    this.jobs = response.response.docs;
+    this.jobsChanged.next([...this.jobs]);
+  })
+ );
+}
   addNewJob(job:Job):Observable<any>{
   
     return this.http.post(this.Port+'/api/job/store', job);
@@ -51,6 +89,7 @@ export class JobserviceService {
     return myData;
   }
   public deleteJob(id:any):Observable<any>{
+    console.log(id)
    const body = {
       "_id":id
   } 
@@ -58,6 +97,9 @@ export class JobserviceService {
     return this.http.post(this.Port+'/api/job/destroy' , body);
 
   }
+
+  
+ 
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

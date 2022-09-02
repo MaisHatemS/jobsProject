@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MyJobPageComponent } from './component/my-job-page/my-job-page.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddnewjobComponent } from './component/addnewjob/addnewjob.component';
 import { RouterModule } from '@angular/router';
 import { JobserviceService } from './service/jobservice.service';
@@ -32,7 +32,8 @@ import { ConfirmationDialogComponent } from './component/confirmation-dialog/con
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [JobserviceService,ModalService],
   bootstrap: [AppComponent]

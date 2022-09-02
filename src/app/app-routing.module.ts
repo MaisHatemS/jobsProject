@@ -8,9 +8,10 @@ import { MyJobPageComponent } from './component/my-job-page/my-job-page.componen
 const routes: Routes = [
   {path:'',redirectTo:'/jobs',pathMatch:'full'}, 
   {path:"jobs",component:MyJobPageComponent},
-  {path:"addnewJob",component:AddnewjobComponent},
-  {path:"showDetails",component:JobDetailsComponent},
-  {path:"showDialog",component:ConfirmationDialogComponent}
+//   {path:"addnewJob",component:AddnewjobComponent},
+//   {path:"showDetails",component:JobDetailsComponent},
+//   {path:"showDialog",component:ConfirmationDialogComponent}
+// ];
 ];
 
 @NgModule({
